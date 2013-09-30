@@ -187,6 +187,14 @@ class BJ_Local_GAjs {
 
 	public static function deactivate() {
 		wp_clear_scheduled_hook( 'cronevent_check_new_gajs' );
+
+		$Yoast_Google_Analytics = get_option( 'Yoast_Google_Analytics' );
+		if ( is_array( $Yoast_Google_Analytics ) ) {
+			$Yoast_Google_Analytics['gajslocalhosting'] = false;
+			$Yoast_Google_Analytics['gajsurl'] = "";
+
+			update_option( 'Yoast_Google_Analytics', $Yoast_Google_Analytics );
+		}
 	}
 
 	public static function uninstall() {
